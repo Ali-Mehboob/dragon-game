@@ -1,0 +1,7 @@
+{
+  "name": "Dragon Game",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

@@ -1,0 +1,60 @@
+<ion-content [fullscreen]="true" class="game-content">
+  <!-- Game Header with Score -->
+  <div class="game-header">
+    <div class="score-container">
+      <div class="score-label">SCORE</div>
+      <div class="score-value">{{ score }}</div>
+    </div>
+    <div class="high-score-container">
+      <div class="high-score-label">BEST</div>
+      <div class="high-score-value">{{ highScore }}</div>
+    </div>
+  </div>
+
+  <!-- Game Canvas Container -->
+<div class="game-canvas-wrapper" (click)="handleJump()" (touchstart)="handleJump()">
+  <canvas #gameCanvas class="game-canvas"></canvas>
+  
+  <!-- Game Over Overlay -->
+<div class="game-over-overlay" *ngIf="gameOver" (click)="$event.stopPropagation()" (touchstart)="$event.stopPropagation()">
+  <div class="game-over-content">
+    <h1 class="game-over-title">Game Over!</h1>
+    <div class="final-score">
+      <p class="final-score-label">Your Score</p>
+      <p class="final-score-value">{{ score }}</p>
+    </div>
+    <div class="high-score-badge" *ngIf="isNewHighScore">
+      <ion-icon name="trophy"></ion-icon>
+      <span>New High Score!</span>
+    </div>
+    <div class="game-over-buttons">
+      <ion-button expand="block" class="restart-button" (click)="restartGame(); $event.stopPropagation()">
+        <ion-icon slot="start" name="refresh"></ion-icon>
+        Play Again
+      </ion-button>
+      <ion-button expand="block" fill="outline" class="home-button" (click)="goHome(); $event.stopPropagation()">
+        <ion-icon slot="start" name="home"></ion-icon>
+        Home
+      </ion-button>
+    </div>
+  </div>
+</div>
+
+  <!-- Start Game Overlay -->
+  <div class="start-overlay" *ngIf="!gameStarted && !gameOver">
+    <div class="start-content">
+      <h2 class="start-title">Ready?</h2>
+      <p class="start-instruction">Tap anywhere to jump!</p>
+      <ion-icon name="hand-left" class="tap-icon"></ion-icon>
+    </div>
+  </div>
+</div>
+
+  <!-- Game Controls Info -->
+  <div class="game-controls" *ngIf="!gameOver">
+    <div class="control-hint">
+      <ion-icon name="hand-left"></ion-icon>
+      <span>Tap to Jump</span>
+    </div>
+  </div>
+</ion-content>
